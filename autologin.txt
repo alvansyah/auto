@@ -1,0 +1,13 @@
+:local username "982388289500420"
+:local password "jwe"
+:local int "ether1"
+:local gw "8.8.8.8"
+:local mak "00:1A:79:2A:C0:15"
+:local ipwan [/ip address get [/ip address find interface=$int] address]
+:local ipwan [put [:pick $ipwan 0 [:find $ipwan "/"]]]
+:local murudul "3"
+:if ([/ping $gw interval=0.5 count=$murudul interface=$int] = 0) do={
+:log warning "$int {link down} coba konek lagi ..."
+/tool fetch http-method=post http-data="username=$username@spin2&password=$password" url=("https://welcome2.wifi.id/authnew/login/check_login.php?ipc=$ipwan&gw_id=WAG-D1-PBR&mac=$mak&redirect=&wlan=") keep-result=no http-header-field="User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:12.0) Gecko/20100101 Firefox/5.0" 
+} else {
+}
