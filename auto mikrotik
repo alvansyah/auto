@@ -1,0 +1,6 @@
+:local username "alvansyahhawary@gmail.com"
+:local password "Wifialvans1"
+:local mak "00:C0:9F:A1:9D:4A"
+:local ipwan "10.126.0.1"
+:log warning "AUTO LOGIN WIFI"
+/tool fetch http-method=post http-data="username=$username@komunitas.smartbisnis&password=$password" url=("https://welcome2.wifi.id/authnew/login/check_login.php?ipc=$ipwan&gw_id=WAG-D1-PBR&mac=$mak&redirect=&wlan=") keep-result=no http-header-field="User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:12.0) Gecko/20100101 Firefox/5.0" 
