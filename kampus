@@ -1,0 +1,10 @@
+:local username "2019140114"
+:local password "230500"
+:local int "wlan1"
+/ip dhcp-client renew [find interface="$int"]
+delay 10s
+:local mak [/interface wireless get [find name="$int"] mac-address]
+:local ipwan [/ip address get [/ip address find interface=$int] address]
+:local ipwan [put [:pick $ipwan 0 [:find $ipwan "/"]]]
+:log error "$mak $int MENCOBA LOGIN"
+/tool fetch http-method=post http-data="username=$username@komunitas.unsiq&password=$password" url=("https://welcome2.wifi.id/authnew/login/check_login.php?ipc=$ipwan&gw_id=WAG-D1-PBR&mac=$mak&redirect=&wlan=") keep-result=no http-header-field="User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:12.0) Gecko/20100101 Firefox/5.0"
